@@ -21,7 +21,7 @@ import java.util.LinkedList;
 public class Player extends GameObject {
     
     private float width = 48, height = 96;
-    private float gravity = 0.5f;
+    private float gravity = 0.3f;
     private final float MAX_SPEED = 10;
     
     private Handler handler;
@@ -48,12 +48,28 @@ public class Player extends GameObject {
     private void collision(LinkedList<GameObject> object){
         for(GameObject tempObject: object){
             if(tempObject.getId() == ObjectId.Block){
+                //Bottom
                 if(getBoundsBottom().intersects(tempObject.getBounds())){
                     y = tempObject.getY() - height;
                     velY = 0;
                     falling = false;
                     jumping = false;
+                }else
+                    falling = true;
+                //Top
+                if(getBoundsTop().intersects(tempObject.getBounds())){
+                    y = tempObject.getY() + 33;
+                    velY = 0;
                 }
+                //Left & Right
+                if(getBoundsLeft().intersects(tempObject.getBounds())){
+                    x = tempObject.getX() + 33;
+                }else if(getBoundsRight().intersects(tempObject.getBounds())){
+                    x = tempObject.getX() - width;
+                }
+                //else 
+                    
+                
             }
         }
     }
@@ -64,10 +80,12 @@ public class Player extends GameObject {
         Graphics2D g2d = (Graphics2D) g;
         
         g.setColor(Color.red);
+        // Hitboxes
         g2d.draw(getBoundsRight());
         g2d.draw(getBoundsLeft());
         g2d.draw(getBoundsTop());
         g2d.draw(getBoundsBottom());
+        
     }
     
     public Rectangle getBounds(){
@@ -75,10 +93,10 @@ public class Player extends GameObject {
     }
     
     public Rectangle getBoundsRight() {
-        return new Rectangle((int)(x+(width-5)), (int)y+5,(int) 5,(int) height-10);
+        return new Rectangle((int)(x+(width-5)), (int)y+2,(int) 5,(int) height-4);
     }
     public Rectangle getBoundsLeft() {
-        return new Rectangle((int)x, (int)y+5,(int) 5,(int) height-10);
+        return new Rectangle((int)x, (int)y+2,(int) 5,(int) height-4);
     }
     public Rectangle getBoundsTop() {
         return new Rectangle((int) (x+(width/4)), (int)y,(int) width/2,(int) height/2);
