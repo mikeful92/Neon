@@ -7,6 +7,8 @@ package com.mike.neon.objects;
 
 import com.mike.neon.framework.GameObject;
 import com.mike.neon.framework.ObjectId;
+import com.mike.neon.framework.Texture;
+import com.mike.neon.window.Game;
 import com.mike.neon.window.Handler;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -25,6 +27,8 @@ public class Player extends GameObject {
     private final float MAX_SPEED = 10;
     
     private Handler handler;
+    
+    Texture tex = Game.getInstance();
 
     public Player(float x, float y, ObjectId id, Handler handler) {
         super(x, y, id);
