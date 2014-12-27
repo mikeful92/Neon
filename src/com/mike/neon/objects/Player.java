@@ -80,12 +80,12 @@ public class Player extends GameObject {
         Graphics2D g2d = (Graphics2D) g;
         
         g.setColor(Color.red);
-        // Hitboxes
+        /* Hitboxes
         g2d.draw(getBoundsRight());
         g2d.draw(getBoundsLeft());
         g2d.draw(getBoundsTop());
         g2d.draw(getBoundsBottom());
-        
+        */
     }
     
     public Rectangle getBounds(){
