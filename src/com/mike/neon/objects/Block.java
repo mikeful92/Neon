@@ -9,7 +9,6 @@ import com.mike.neon.framework.GameObject;
 import com.mike.neon.framework.ObjectId;
 import com.mike.neon.framework.Texture;
 import com.mike.neon.window.Game;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;

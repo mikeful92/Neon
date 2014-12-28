@@ -8,6 +8,7 @@ package com.mike.neon.objects;
 import com.mike.neon.framework.GameObject;
 import com.mike.neon.framework.ObjectId;
 import com.mike.neon.framework.Texture;
+import com.mike.neon.window.Animation;
 import com.mike.neon.window.Game;
 import com.mike.neon.window.Handler;
 import java.awt.Color;
@@ -29,10 +30,14 @@ public class Player extends GameObject {
     private Handler handler;
     
     Texture tex = Game.getInstance();
+    
+    private Animation playerWalk;
 
     public Player(float x, float y, ObjectId id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
+        
+        playerWalk = new Animation(5, tex.player[1], tex.player[3]);
     }
 
     public void tick(LinkedList<GameObject> object) {
@@ -46,6 +51,8 @@ public class Player extends GameObject {
         }
         
         collision(object);
+        
+        playerWalk.runAnimation();
     }
 
     
@@ -67,24 +74,27 @@ public class Player extends GameObject {
                 }
                 //Left & Right
                 if(getBoundsLeft().intersects(tempObject.getBounds())){
-                    x = tempObject.getX() + 33;
+                    x = tempObject.getX() + 32;
                 }else if(getBoundsRight().intersects(tempObject.getBounds())){
                     x = tempObject.getX() - width;
                 }
-                //else 
-                    
-                
             }
         }
     }
+    
     public void render(Graphics g) {
-        g.setColor(Color.blue);
-        g.fillRect((int)x, (int)y,(int) width,(int) height);
+        //g.setColor(Color.blue);
+        //g.fillRect((int)x, (int)y,(int) width,(int) height);
+        if(velX != 0){
+            playerWalk.drawAnimation(g, (int) x, (int)y, 48, 96);
+        }
+        else
+            g.drawImage(tex.player[0],(int) x,(int) y, 48, 96, null);
         
-        Graphics2D g2d = (Graphics2D) g;
         
-        g.setColor(Color.red);
         /* Hitboxes
+        Graphics2D g2d = (Graphics2D) g;
+        g.setColor(Color.red);
         g2d.draw(getBoundsRight());
         g2d.draw(getBoundsLeft());
         g2d.draw(getBoundsTop());
