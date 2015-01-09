@@ -12,6 +12,7 @@ package com.mike.neon.framework;
 public enum ObjectId {
     
     Player(),
+    Bullet(),
     Block();
     
 }

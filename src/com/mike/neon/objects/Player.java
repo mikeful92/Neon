@@ -118,5 +118,5 @@ public class Player extends GameObject {
     public Rectangle getBoundsBottom() {
         return new Rectangle((int)(x+(width/4)), (int)(y+(height/2)),(int) width/2,(int) height/2);
     }
-    
+
 }

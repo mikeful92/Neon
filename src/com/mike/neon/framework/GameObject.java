@@ -18,8 +18,9 @@ public abstract class GameObject {
     protected float x,y;
     protected ObjectId id;
     protected float velX = 0, velY = 0;
-    protected boolean falling = true;
+    protected boolean falling = false;
     protected boolean jumping = false;
+    protected int facing = 1;
     
     public GameObject(float x, float y, ObjectId id){
         this.x = x;
@@ -95,4 +96,20 @@ public abstract class GameObject {
     public void setJumping(boolean jumping) {
         this.jumping = jumping;
     }
+    
+    
+    /**
+     * @return the facing
+     */
+    public int getFacing() {
+        return facing;
+    }
+
+    /**
+     * @param facing the facing to set
+     */
+    public void setFacing(int facing) {
+        this.facing = facing;
+    }
+    
 }

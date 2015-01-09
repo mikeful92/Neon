@@ -5,6 +5,7 @@
  */
 package com.mike.neon.framework;
 
+import com.mike.neon.objects.Bullet;
 import com.mike.neon.window.Handler;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -32,19 +33,20 @@ public class KeyInput extends KeyAdapter{
             if(tempObject.getId() == ObjectId.Player){
                 if(key == KeyEvent.VK_RIGHT){
                     tempObject.setVelX(5);
+                    tempObject.setFacing(1);
                     keyDown[0] = true;
                 }else if(key == KeyEvent.VK_LEFT){
                     tempObject.setVelX(-5);
+                    tempObject.setFacing(-1);
                     keyDown[1] = true;
                 } 
-                if(key == KeyEvent.VK_SPACE && !tempObject.isJumping()){
+                if(key == KeyEvent.VK_UP && !tempObject.isJumping()){
                     tempObject.setVelY(-10);
                     tempObject.setJumping(true);
                     keyDown[2] = true;
                 }
-                if(key == KeyEvent.VK_S){
-                    //tempObject.setVelY(5);
-                    //keyDown[3] = true;
+                if(key == KeyEvent.VK_SPACE){
+                    //.addBullet();
                 }
             }
         }

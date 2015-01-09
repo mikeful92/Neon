@@ -16,21 +16,28 @@ import java.util.LinkedList;
  *
  * @author Mike
  */
-public class Test extends GameObject{
+public class Bullet extends GameObject{
+    private float width = 8, height = 8;
+    private final float MAX_SPEED = 20;
 
-    public Test(float x, float y, ObjectId id) {
+    public Bullet(float x, float y, ObjectId id, int velX) {
         super(x, y, id);
+        this.velX = velX;
     }
 
     public void tick(LinkedList<GameObject> object) {
+        x += velX;
     }
 
+    
     public void render(Graphics g) {
-        g.setColor(Color.red);
-        g.fillRect((int)x, (int) y, 32, 32);
+        g.setColor(Color.YELLOW);
+        g.fillRect((int) x, (int)y, (int) width, (int)height);
     }
 
-    public Rectangle getBounds(){
-        return null;
+    
+    public Rectangle getBounds() {
+        return new Rectangle((int) x, (int)y, (int) width, (int)height);
     }
+    
 }
